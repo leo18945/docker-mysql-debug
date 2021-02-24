@@ -552,7 +552,7 @@ mysql> select a.empno, a.ename, b.dname, a.job, a.mgr, a.hiredate, a.sal, a.comm
 
 #### mysql 源码学习参考
 
-> Mysql优化器源码
-> https://blog.csdn.net/huoyuanshen/article/details/50420315
-> MySQL确定JOIN表顺序
-> https://zhuanlan.zhihu.com/p/102655586
+> Mysql优化器源码  
+> https://blog.csdn.net/huoyuanshen/article/details/50420315  
+> MySQL确定JOIN表顺序  
+> https://zhuanlan.zhihu.com/p/102655586  
