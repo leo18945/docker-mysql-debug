@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql-debug:
+    image: docker.io/leo18945/mysql-debug
+    container_name: mysql-debug
+    ports:
+      - '13306:3306'
+    # volumes:
+      # - ./my.cnf:/etc/my.cnf
+      # - ./docker-entrypoint.sh:/work/docker-entrypoint.sh
+    # environment:
+      # - TZ=Asia/Shanghai
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: 1024m
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+
+# docker-compose run --name mysql-debug --service-ports mysql-debug
