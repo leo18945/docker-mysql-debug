@@ -1,10 +1,23 @@
 # docker-mysql-debug
 从源码编译的mysql服务器，带debug信息，已安装gdb，便于学习和调试mysql功能及源码。
 
+[![automated](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/leo18945/mysql-debug "Go to Docker hub")
+![](https://img.shields.io/github/last-commit/leo18945/docker-mysql-debug.svg)
+![](https://badgen.net/docker/size/leo18945/mysql-debug/5.7.29)
+[![](https://images.microbadger.com/badges/image/leo18945/mysql-debug:5.7.29.svg)](https://microbadger.com/images/leo18945/mysql-debug:5.7.29 "Get your own image badge on microbadger.com")
+
+![](https://img.shields.io/badge/debian-10-green.svg?logo=debian)
+![](https://img.shields.io/badge/mysql-5.7.29-green.svg?logo=mysql)
+![](https://img.shields.io/badge/mysql-source_code_attached-green.svg?logo=mysql)
+![]https://img.shields.io/badge/gdb-8.2.1-green.svg)
+
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/docker-compose.yml)
+
+
 #### 启动容器
 
 ```shell
-> wget https://raw.githubusercontent.com/leo18945/docker-mysql-debug/main/docker-compose.yml
+> wget https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/docker-compose.yml
 
 > docker-compose run --name mysql-debug --service-ports mysql-debug
 root@1d1e15b4c637:/work#
