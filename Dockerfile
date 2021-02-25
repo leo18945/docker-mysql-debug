@@ -47,11 +47,11 @@ ARG MYSQL_HOME=/work/mysql
 COPY ./sources.list /etc/apt/sources.list
 COPY --from=0 ${MYSQL_HOME} ${MYSQL_HOME}
 COPY --from=0 /work/mysql-boost-5.7.29.tar.gz .
-COPY ./my.cnf /etc/my.cnf
+COPY ./my.cnf .
 COPY ./docker-entrypoint.sh .
 COPY ./bcview ./innblock ./
+COPY ./aliases.sh .
 
-# Install required system packages and dependencies
 RUN apt-get update --allow-unauthenticated --allow-insecure-repositories && \
 apt-get install -y --assume-yes libncurses5-dev libncursesw5-dev openssl libssl-dev libatomic1 gdb procps && \
 rm -rf /var/lib/apt/lists/* && \
@@ -61,9 +61,7 @@ groupadd mysql && \
 useradd -s /sbin/nologin -M -g mysql mysql && \
 bash -c 'mkdir -p /work/mysql/{tmp,log}' && \
 chown -R mysql:mysql /work/mysql && \
-echo 'alias ll="ls -laFh"' >> /etc/bash.bashrc && \
-echo 'alias lls="ll -S"' >> /etc/bash.bashrc && \
-echo 'alias envs="env -0 | sort -z | tr '\0' '\n'"' >> /etc/bash.bashrc
+cat aliases.sh >> /etc/bash.bashrc
 
 ENV BITNAMI_IMAGE_VERSION="mysql-version: 5.7.29" \
     PATH="${MYSQL_HOME}/bin:/work:$PATH" \

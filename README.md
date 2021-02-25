@@ -1,5 +1,7 @@
 ![MySQL](https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/mysql-tm.png)
 
+![GDB](https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/gnu-debugger-a.jpg)
+![GDB](https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/gnu-debugger-b.jpg)
 
 
 # docker-mysql-debug
@@ -24,7 +26,8 @@
 ```shell
 > wget https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/docker-compose.yml
 
-> docker-compose run -u root --name mysql-debug --service-ports mysql-debug
+> docker-compose up -d
+> docker exec -it mysql-debug bash
 root@1d1e15b4c637:/work#
 ```
 

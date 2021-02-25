@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql-debug:
-    image: docker.io/leo18945/mysql-debug:5.7.29
+    image: leo18945/mysql-debug:5.7.29
     container_name: mysql-debug
     user: root
     ports:
@@ -12,6 +12,7 @@ services:
       # - ./docker-entrypoint.sh:/work/docker-entrypoint.sh
     # environment:
       # - TZ=Asia/Shanghai
+      # - MYSQL_ROOT_PASSWORD=pass
     deploy:
       resources:
         limits:
@@ -23,4 +24,5 @@ services:
     security_opt:
       - seccomp:unconfined
 
+# docker-compose up -d
 # docker-compose run -u root --name mysql-debug --service-ports mysql-debug
