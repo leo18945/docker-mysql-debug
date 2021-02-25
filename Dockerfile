@@ -67,10 +67,10 @@ ENV BITNAMI_IMAGE_VERSION="mysql-version: 5.7.29" \
     MYSQL_HOME="${MYSQL_HOME}" \
     MYSQL_DATA_DIR="${MYSQL_HOME}/data" \
     MYSQL_SOURCE_DIR="/work/mysql-5.7.29" \
-    MYSQL_CONF_DIR="/etc/my.cnf" \
+    MYSQL_CONF_FILE="/etc/my.cnf" \
     MYSQL_GREP_ROOT_PASSWORD="grep 'temporary password' /work/mysql/log/mysqld.log" \
     MYSQL_START_CLIENT="mysql -u root -p" \
-    MYSQL_CHANGE_PASSWORD="alter user 'root'@'localhost' identified by 'pass';" \
+    MYSQL_CHANGE_PASSWORD="set password = password('pass');" \
     GDB_BREAKPOINT="gdb breakpoint handle_query do_select do_command JOIN::exec JOIN::get_end_select_func st_select_lex_unit::execute st_select_lex_unit::set_limit st_select_lex_unit::cleanup st_select_lex_unit::first_select Materialized_cursor::send_result_set_metadata JOIN::make_join_plan Optimize_table_order::choose_table_order Optimize_table_order::greedy_search" \
     GDB_COMMAND="gdb -p <mysqld-pid> -ex 'p dict_sys->row_id=281474976710656' -batch" \
     GDB_LOAD_BREAKPOINT="source /work/mysql-breakpoints.txt" \

@@ -11,8 +11,9 @@ services:
     # volumes:
       # - ./my.cnf:/etc/my.cnf
       # - ./docker-entrypoint.sh:/work/docker-entrypoint.sh
-    # environment:
-      # - TZ=Asia/Shanghai
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=C.UTF-8
       # - MYSQL_ROOT_PASSWORD=pass
     deploy:
       resources:

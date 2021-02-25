@@ -27,6 +27,7 @@
 > wget https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/docker-compose.yml
 
 > docker-compose up -d
+
 > docker exec -it mysql-debug bash
 root@1d1e15b4c637:/work#
 ```
@@ -58,7 +59,7 @@ wget https://cdn.mysql.com/archives/mysql-5.7/mysql-boost-5.7.29.tar.gz
 cmake \
 -DCMAKE_INSTALL_PREFIX=/work/mysql \
 -DMYSQL_DATADIR=/work/mysql/data \
--DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
+-DMYSQL_UNIX_ADDR=/work/mysql/tmp/mysql.sock \
 -DDEFAULT_CHARSET=utf8mb4 \
 -DDEFAULT_COLLATION=utf8mb4_unicode_ci \
 -DEXTRA_CHARSETS=all \
@@ -75,11 +76,11 @@ cmake \
 ```shell
 root@9d80e46284e8:/work# ps aux
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   3868  3044 pts/0    Ss   12:40   0:00 /bin/bash /work/docker-entrypoint.sh
-root        47  0.0  0.0   2388  1484 pts/0    S    12:41   0:00 /bin/sh /work/mysql/bin/mysqld_safe --datadir=/work/mysql/data --pid-file=/work/mysql/data/9d80e46284e8.pid
-mysql      297  0.4  4.9 2120556 211104 pts/0  Sl   12:41   0:00 /work/mysql/bin/mysqld --basedir=/work/mysql --datadir=/work/mysql/data --plugin-dir=/work/mysql/lib/plugin --use
-root       342  0.0  0.0   3868  3132 pts/0    S    12:41   0:00 bash
-root       344  0.0  0.0   7640  2680 pts/0    R+   12:42   0:00 ps aux
+root         1  0.0  0.0    996     4 ?        Ss   19:45   0:00 /sbin/docker-init -- /work/docker-entrypoint.sh
+root         8  0.0  0.0   5488  3104 ?        S    19:45   0:00 /bin/bash /work/docker-entrypoint.sh
+mysql       36  0.2  4.9 2186544 211876 ?      Sl   19:45   0:00 mysqld --defaults-file=/work/my.cnf --debug --user=mysql
+root        64  0.0  0.0   5752  3640 pts/0    Ss   19:45   0:00 bash
+root        82  0.0  0.0   9392  3064 pts/0    R+   19:49   0:00 ps aux
 ```
 
 #### 查看环境变量
@@ -95,8 +96,8 @@ HOME=/
 GDB_LOAD_BREAKPOINT=source /work/mysql-breakpoints.txt
 HOSTNAME=9d80e46284e8
 INNBLOCK_COMMAND=innblock table.ibd scan 16
-MYSQL_CHANGE_PASSWORD=alter user 'root'@'localhost' identified by 'pass';
-MYSQL_CONF_DIR=/etc/my.cnf
+MYSQL_CHANGE_PASSWORD=set password = password('pass');
+MYSQL_CONF_FILE=/etc/my.cnf
 MYSQL_DATA_DIR=/work/mysql/data
 MYSQL_GREP_ROOT_PASSWORD=grep 'temporary password' /work/mysql/log/mysqld.log
 MYSQL_HOME=/work/mysql
@@ -187,6 +188,7 @@ default_character_set	=	utf8mb4
 
 [mysql]
 default-character-set	=	utf8mb4
+socket	=	/work/mysql/tmp/mysql.sock
 
 # https://gist.github.com/rhtyd/d59078be4dc88123104e
 # https://fromdual.com/mysql-configuration-file-sample
@@ -208,7 +210,7 @@ Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 2
 Server version: 5.7.29-debug
 
-mysql> alter user 'root'@'localhost' identified by 'pass';
+mysql> set password = password('pass');
 
 mysql> create database test;
 
