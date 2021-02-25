@@ -15,7 +15,7 @@ WORKDIR /work/mysql-5.7.29
 RUN cmake \
 -DCMAKE_INSTALL_PREFIX=/work/mysql \
 -DMYSQL_DATADIR=/work/mysql/data \
--DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
+-DMYSQL_UNIX_ADDR=/work/mysql/tmp/mysql.sock \
 -DDEFAULT_CHARSET=utf8mb4 \
 -DDEFAULT_COLLATION=utf8mb4_unicode_ci \
 -DEXTRA_CHARSETS=all \
@@ -47,10 +47,7 @@ ARG MYSQL_HOME=/work/mysql
 COPY ./sources.list /etc/apt/sources.list
 COPY --from=0 ${MYSQL_HOME} ${MYSQL_HOME}
 COPY --from=0 /work/mysql-boost-5.7.29.tar.gz .
-COPY ./my.cnf .
-COPY ./docker-entrypoint.sh .
-COPY ./bcview ./innblock ./
-COPY ./aliases.sh .
+COPY docker-entrypoint.sh aliases.sh my.cnf mysql-breakpoints.txt bcview innblock ./
 
 RUN apt-get update --allow-unauthenticated --allow-insecure-repositories && \
 apt-get install -y --assume-yes libncurses5-dev libncursesw5-dev openssl libssl-dev libatomic1 gdb procps && \
@@ -61,7 +58,8 @@ groupadd mysql && \
 useradd -s /sbin/nologin -M -g mysql mysql && \
 bash -c 'mkdir -p /work/mysql/{tmp,log}' && \
 chown -R mysql:mysql /work/mysql && \
-cat aliases.sh >> /etc/bash.bashrc
+cat aliases.sh >> /etc/bash.bashrc && \
+ln my.cnf /etc/my.cnf
 
 ENV BITNAMI_IMAGE_VERSION="mysql-version: 5.7.29" \
     PATH="${MYSQL_HOME}/bin:/work:$PATH" \

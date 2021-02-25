@@ -1,0 +1,7 @@
+break handle_query
+break do_select
+break do_command
+break JOIN::exec
+break JOIN::make_join_plan
+break Optimize_table_order::choose_table_order
+break Optimize_table_order::greedy_search

@@ -4,6 +4,7 @@ services:
   mysql-debug:
     image: leo18945/mysql-debug:5.7.29
     container_name: mysql-debug
+    init: true
     user: root
     ports:
       - '13306:3306'
