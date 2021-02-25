@@ -19,7 +19,7 @@
 ```shell
 > wget https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/docker-compose.yml
 
-> docker-compose run --name mysql-debug --service-ports mysql-debug
+> docker-compose run -u root --name mysql-debug --service-ports mysql-debug
 root@1d1e15b4c637:/work#
 ```
 
@@ -92,6 +92,7 @@ MYSQL_CONF_DIR=/etc/my.cnf
 MYSQL_DATA_DIR=/work/mysql/data
 MYSQL_GREP_ROOT_PASSWORD=grep 'temporary password' /work/mysql/log/mysqld.log
 MYSQL_HOME=/work/mysql
+MYSQL_SOURCE_DIR=/work/mysql-5.7.29
 MYSQL_PAGE_COPY_COMMAND=dd if=table.ibd of=new.hex skip=4 bs=16k count=1
 MYSQL_START_CLIENT=mysql -u root -p
 OS_ARCH=amd64
@@ -193,7 +194,8 @@ root@9d80e46284e8:/work# grep 'temporary password' /work/mysql/log/mysqld.log
 #### 使用 mysql-cli 客户端构造数据
 
 ```mysql
-root@9d80e46284e8:/work# mysql -u root -psfUr7ha2qg,5
+root@9d80e46284e8:/work# mysql -u root -p
+Enter password: sfUr7ha2qg,5
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 2
 Server version: 5.7.29-debug

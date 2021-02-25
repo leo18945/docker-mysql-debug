@@ -4,6 +4,7 @@ services:
   mysql-debug:
     image: docker.io/leo18945/mysql-debug:5.7.29
     container_name: mysql-debug
+    user: root
     ports:
       - '13306:3306'
     # volumes:

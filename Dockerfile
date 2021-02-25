@@ -70,6 +70,7 @@ ENV BITNAMI_IMAGE_VERSION="mysql-version: 5.7.29" \
     BASH_ALIAS="/etc/bash.bashrc; alias ll='ls -laFh'; alias lls='ll -S'" \
     MYSQL_HOME="${MYSQL_HOME}" \
     MYSQL_DATA_DIR="${MYSQL_HOME}/data" \
+    MYSQL_SOURCE_DIR="/work/mysql-5.7.29" \
     MYSQL_CONF_DIR="/etc/my.cnf" \
     MYSQL_GREP_ROOT_PASSWORD="grep 'temporary password' /work/mysql/log/mysqld.log" \
     MYSQL_START_CLIENT="mysql -u root -p" \
