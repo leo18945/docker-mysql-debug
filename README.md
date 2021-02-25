@@ -9,7 +9,7 @@
 ![](https://img.shields.io/badge/debian-10-green.svg?logo=debian)
 ![](https://img.shields.io/badge/mysql-5.7.29-green.svg?logo=mysql)
 ![](https://img.shields.io/badge/mysql-source_code_attached-green.svg?logo=mysql)
-![]https://img.shields.io/badge/gdb-8.2.1-green.svg)
+![](https://img.shields.io/badge/gdb-8.2.1-green.svg?logo=gdb)
 
 [![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/docker-compose.yml)
 
