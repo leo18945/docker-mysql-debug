@@ -1,4 +1,9 @@
+![MySQL](https://raw.githubusercontent.com/leo18945/docker-mysql-debug/master/mysql-tm.png)
+
+
+
 # docker-mysql-debug
+
 从源码编译的mysql服务器，带debug信息，已安装gdb，便于学习和调试mysql功能及源码。
 
 [![automated](https://badgen.net/badge/icon/docker?icon=docker&label)](https://hub.docker.com/r/leo18945/mysql-debug "Go to Docker hub")
