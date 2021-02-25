@@ -25,6 +25,3 @@ services:
       - SYS_PTRACE
     security_opt:
       - seccomp:unconfined
-
-# docker-compose up -d
-# docker-compose run -u root --name mysql-debug --service-ports mysql-debug
