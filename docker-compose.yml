@@ -23,4 +23,4 @@ services:
     security_opt:
       - seccomp:unconfined
 
-# docker-compose run --name mysql-debug --service-ports mysql-debug
+# docker-compose run -u root --name mysql-debug --service-ports mysql-debug
